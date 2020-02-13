@@ -1,1 +1,1 @@
-echo "# Swarthmore_LISA_for_Cosmologists" 
+"#Swarthmore LISA for cosmologists project github code." 
