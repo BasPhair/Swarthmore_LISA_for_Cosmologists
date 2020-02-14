@@ -36,7 +36,9 @@ Definitions
 """
 
 ##Constants
+#Number of Seconds in a year
 Year = 365*24*60*60#Seconds
+#Hubble Constant
 H0 = (100*.67*(10**3))/(3.086*(10**22))#1/second
 #We set the Hubble parameter to h=0.67 (despite the Hubble tension!)
 
@@ -82,7 +84,7 @@ def C2(f):
 
 #For a stochastic background, Equation 61
 SumOmegaTab = [[Rtab[i][0] for i in range(len(Rtab))],[(1/math.sqrt(((((3*(H0**2))/(4*(pi**2)*((Rtab[i][0])**3)))**2)*(2*(((Rtab[i][1]-Rtab[i][2])/(C1(Rtab[i][0])- C2(Rtab[i][0])))**2)))))for i in range(len(Rtab))]]
-SumOmegaNum = lambda x: 10**hermite.hermval(math.log10(x),hermite.hermfit([math.log10(x) for x in SumOmegaTab[0]],[math.log10(y) for y in SumOmegaTab[1]],3))
+SumOmegaNum = interpolate.interp1d(SumOmegaTab[0], SumOmegaTab[1])
 
 #for a deterministic source, Equation 85
 SumHTab = [[Rtab[i][0] for i in range(len(Rtab))], [.5*((2*((Rtab[i][1] - Rtab[i][2])/(C1(Rtab[i][0]) - C2(Rtab[i][0]))))**(-1)) for i in range(len(Rtab))]]
@@ -140,20 +142,23 @@ Num is stilled fucked
 """
 
 #The above is repeated with new fmin and fmax
+
+#(* \[CapitalOmega]_{GW} h^2 = *) % 0.67^2
 fmin = 10**(-4)
 fmax = 10**(-1)
 
-# SNR5/Sqrt[T NIntegrate[1/(\[CapitalSigma]\[CapitalOmega]approx[f])^2, {f, fmin, fmax}]]
-#print(SNR5/math.sqrt(T*integrate.quad(integrandApp,fmin,fmax)[0]))
+#SNR5/Sqrt[T NIntegrate[1/(\[CapitalSigma]\[CapitalOmega]approx[f])^2, {f, fmin, fmax}]]
+print(SNR5/math.sqrt(T*integrate.quad(integrandApp,fmin,fmax)[0]))
 
 # SNR5/Sqrt[T NIntegrate[1/(\[CapitalSigma]\[CapitalOmega]num[f])^2, {f, fmin, fmax}]]
-#print(SNR5/math.sqrt(T*integrate.quad(integrandNum,fmin,fmax)[0]))
+print(SNR5/math.sqrt(T*integrate.quad(integrandNum,fmin,fmax)[0]))
 
-#(* \[CapitalOmega]_{GW} h^2 = *) % 0.67^2
 
 #SNR5/Sqrt[T3 NIntegrate[1/(\[CapitalSigma]\[CapitalOmega]num[f])^2, {f, fmin, fmax}]]
 T3 = 3*Year
-#print(SNR5/math.sqrt(T3*integrate.quad(integrandApp,fmin,fmax)[0]))
+print(SNR5/math.sqrt(T3*integrate.quad(integrandApp,fmin,fmax)[0]))
+
+
 
 """
 Sensitivity to an arbitrary stochastic background
@@ -199,7 +204,6 @@ def Fplot(x_range):
     plt.show()
 
 #Fplot([10**-4,.1])
-
 
 """
 Sensitivity to GW150914
