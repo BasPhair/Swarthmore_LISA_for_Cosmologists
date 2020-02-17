@@ -84,7 +84,7 @@ def C2(f):
 
 #For a stochastic background, Equation 61
 SumOmegaTab = [[Rtab[i][0] for i in range(len(Rtab))],[(1/math.sqrt(((((3*(H0**2))/(4*(pi**2)*((Rtab[i][0])**3)))**2)*(2*(((Rtab[i][1]-Rtab[i][2])/(C1(Rtab[i][0])- C2(Rtab[i][0])))**2)))))for i in range(len(Rtab))]]
-SumOmegaNum = interpolate.interp1d(SumOmegaTab[0], SumOmegaTab[1])
+SumOmegaNum = interpolate.interp1d(SumOmegaTab[0], SumOmegaTab[1],"cubic")
 
 #for a deterministic source, Equation 85
 SumHTab = [[Rtab[i][0] for i in range(len(Rtab))], [.5*((2*((Rtab[i][1] - Rtab[i][2])/(C1(Rtab[i][0]) - C2(Rtab[i][0]))))**(-1)) for i in range(len(Rtab))]]
@@ -132,10 +132,10 @@ def Omega_GW_h2(fmin,fmax,t):
 ##commands as comments to increase ease of reference
 
 # SNR5/Sqrt[T NIntegrate[1/(\[CapitalSigma]\[CapitalOmega]approx[f])^2, {f, fmin, fmax}]]
-#print(SNR5/math.sqrt(T*integrate.quad(integrandApp,fmin,fmax)[0]))
+print(SNR5/math.sqrt(T*integrate.quad(integrandApp,fmin,fmax)[0]))
 
 # SNR5/Sqrt[T NIntegrate[1/(\[CapitalSigma]\[CapitalOmega]num[f])^2, {f, fmin, fmax}]]
-#print(SNR5/math.sqrt(T*integrate.quad(integrandNum,fmin,fmax)[0]))
+print(SNR5/math.sqrt(T*integrate.quad(integrandNum,fmin,fmax)[0]))
 
 """
 Num is stilled fucked
@@ -156,7 +156,7 @@ print(SNR5/math.sqrt(T*integrate.quad(integrandNum,fmin,fmax)[0]))
 
 #SNR5/Sqrt[T3 NIntegrate[1/(\[CapitalSigma]\[CapitalOmega]num[f])^2, {f, fmin, fmax}]]
 T3 = 3*Year
-print(SNR5/math.sqrt(T3*integrate.quad(integrandApp,fmin,fmax)[0]))
+print(SNR5/math.sqrt(T3*integrate.quad(integrandNum,fmin,fmax)[0]))
 
 
 
