@@ -209,7 +209,7 @@ def Fplot(x_range):
 Sensitivity to GW150914
 """
 
-"""
+
 #Definitions, units
 GN = 6.67*(10**-11) # m^3/(kg s^2)
 c = 3*(10**8) #m/s
@@ -222,7 +222,7 @@ M2 = 29*Msol
 Z = .09
 
 #chirp mass in source frame
-Mr = ((M1*M2)**3)/((M1+M2)**.2)
+Mr = (((M1*M2)**3)/(M1+M2))**.2
 
 #Distance
 integrand = lambda x: 2997.9/(.7/(math.sqrt(((.3*(1+x))**3)+.7)))
@@ -230,7 +230,7 @@ Dcom = Mpc*integrate.quad(integrand,0,Z)[0]
 DL = (1+Z)*Dcom
 
 #Initial Radiating Frequency, in observer frame
-fi = .01774/(s/(1+Z)) #Radiates for 4 years from this frequency, in observer frame
+fi = .01774/(1+Z) #Radiates for 4 years from this frequency, in observer frame
 
 #Time to radiate
 fr = fi*(1+Z)
@@ -239,7 +239,7 @@ Tc = lambda frad: ((5*(c**5))/(256*(fr**(8/3))*((GN*Mr)**(5/3))*(math.pi()**(8/3
 #... in observer frame frame (eq 98)
 #check that it radiates for 4 years
 print(((5*(c**5))/(256*(fr**(8/3))*((GN*Mr)**(5/3))*(math.pi**(8/3))))/((Year)*(1+Z)))
-"""
+
 
 
 
