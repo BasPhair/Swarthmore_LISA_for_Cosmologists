@@ -10,17 +10,13 @@ from scipy import integrate
 
 test = LISA('LISA_Data.csv')
 
-"""
-print("SNR5/Sqrt[T NIntegrate[1/(SigmaOmegaApprox[f])^2, {f, 10^-5, 10^0}]]")
-if (5/math.sqrt(4*integrate.quad(integrandApp,(10**-5),(10**0))[0])) == (4.79517*(10**-13)):
-    print("Test Passed\n")
-elif func != (4.79517*(10**-13)):
-    print("Test Failed\n")
 
-test.PlotOmega()
-test.PlotH()
-"""
 
+"""
+The following code performs the calculations found in the "Sensitivity to a flat
+stochastic background" section of the Mathematica code.
+"""
+print("The following code performs the calculations found in the 'Sensitivity to a flat\nstochastic background' section of the Mathematica code.")
 fmin = 10**(-5)
 fmax = 10**(0)
 
@@ -32,16 +28,28 @@ def test_flat_background(fmin,fmax,integrand,SNR,T):
 
 fmin = 10**(-5)
 fmax = 10**(0)
+
 print(test_flat_background(fmin,fmax,integrandApp,test.SNR5,test.T))
 print('Actual: 4.79517x10^-13\n')
+
 print(test_flat_background(fmin,fmax,integrandNum,test.SNR5,test.T))
 print('Actual: 4.719x10^-13\n')
+
 fmin = 10**(-4)
 fmax = 10**(-1)
+
 print(test_flat_background(fmin,fmax,integrandApp,test.SNR5,test.T))
 print('Actual: 4.79517x10^-13\n')
+
 print(test_flat_background(fmin,fmax,integrandNum,test.SNR5,test.T))
 print('Actual: 4.719x10^-13\n')
+
+print(test_flat_background(fmin,fmax,integrandNum,test.SNR5,test.T)*(.67**2))
+print('Actual: 2.11836x10^-13\n')
+
 print(test_flat_background(fmin,fmax,integrandNum,test.SNR5,(test.Year*3)))
 print('Actual: 5.44903x10^-13\n')
+
+print(test_flat_background(fmin,fmax,integrandNum,test.SNR5,(test.Year*3))*(.67**2))
+print('Actual: 2.44607x10^-13\n')
 
