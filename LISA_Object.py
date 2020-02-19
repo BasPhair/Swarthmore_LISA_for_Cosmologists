@@ -92,3 +92,20 @@ class LISA():
 
     def SumHNum(self,f):
         return interpolate.interp1d(self.SumHTab[0],self.SumHTab[1])(f)
+
+    def Amin(self,nt,fmin,fmax):
+        integrand = lambda x: (((x/self.fstar)**nt)/self.SumOmegaNum(x))**2
+        return self.SNR5/math.sqrt((self.T*integrate.quad(integrand, fmin, fmax)[0]))
+
+    def Atab(self,ntmin,ntmax):
+        return True
+
+
+
+
+
+
+
+
+
+    

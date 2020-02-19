@@ -53,3 +53,7 @@ print('Actual: 5.44903x10^-13\n')
 print(test_flat_background(fmin,fmax,integrandNum,test.SNR5,(test.Year*3))*(.67**2))
 print('Actual: 2.44607x10^-13\n')
 
+print("Testing Amin(0)")
+print(test.Amin(0,fmin,fmax))
+print('Actual: 4.719x10^-13\n')
+
