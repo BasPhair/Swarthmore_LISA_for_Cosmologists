@@ -225,8 +225,9 @@ Z = .09
 Mr = (((M1*M2)**3)/(M1+M2))**.2
 
 #Distance
-integrand = lambda x: 2997.9/(.7/(math.sqrt(((.3*(1+x))**3)+.7)))
+integrand = lambda x: 2997.9/.7/math.sqrt((.3*(1+x)**3)+.7)
 Dcom = Mpc*integrate.quad(integrand,0,Z)[0]
+print(Dcom)
 DL = (1+Z)*Dcom
 
 #Initial Radiating Frequency, in observer frame
@@ -238,7 +239,9 @@ Tc = lambda frad: ((5*(c**5))/(256*(fr**(8/3))*((GN*Mr)**(5/3))*(math.pi()**(8/3
 
 #... in observer frame frame (eq 98)
 #check that it radiates for 4 years
-print(((5*(c**5))/(256*(fr**(8/3))*((GN*Mr)**(5/3))*(math.pi**(8/3))))/((Year)*(1+Z)))
+print(((5*(c**5))/(256*(fr**(8/3))*((GN*Mr)**(5/3))*(math.pi**(8/3))))/(Year)*(1+Z))
+
+
 
 
 
