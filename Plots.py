@@ -8,3 +8,5 @@ lisa.SensitivityPlot()
 lisa.PlotOmega()
 
 lisa.PlotH()
+
+lisa.PlotF([10**-4,.1])

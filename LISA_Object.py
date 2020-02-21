@@ -30,6 +30,8 @@ class LISA():
         self.SumOmegaTab = [[self.Rtab[i][0] for i in range(len(self.Rtab))],[(1/math.sqrt(((((3*(self.H0**2))/(4*(pi**2)*((self.Rtab[i][0])**3)))**2)*(2*(((self.Rtab[i][1]-self.Rtab[i][2])/(self.C1(self.Rtab[i][0])- self.C2(self.Rtab[i][0])))**2)))))for i in range(len(self.Rtab))]]
         self.SumHTab = [[self.Rtab[i][0] for i in range(len(self.Rtab))], [.5*((2*((self.Rtab[i][1] - self.Rtab[i][2])/(self.C1(self.Rtab[i][0]) - self.C2(self.Rtab[i][0]))))**(-1)) for i in range(len(self.Rtab))]]
 
+        self.Atab = [[nt, self.Amin(nt,10**-4,10**-1)] for nt in np.linspace(-7/2, 9/2, num = 41)]
+
     ##Retrieves the data to be analyzed. If the data file is not in the same directory as this code be sure to use the full path.
     def get_data(self, file):
         with open(file) as LISA_data:
@@ -97,8 +99,18 @@ class LISA():
         integrand = lambda x: (((x/self.fstar)**nt)/self.SumOmegaNum(x))**2
         return self.SNR5/math.sqrt((self.T*integrate.quad(integrand, fmin, fmax)[0]))
 
-    def Atab(self,ntmin,ntmax):
-        return True
+    def Ftab(self,f):
+        return [self.Atab[i][1]*((f/self.fstar)**self.Atab[i][0]) for i in range(len(self.Atab))]
+
+    def PlotF(self,x_range):
+        x = x_range
+        ys = []
+        for n in range(len(self.Atab)):
+            ys.append([self.Ftab(i)[n] for i in x])
+        for y in ys:
+            plt.loglog(x,y,'k-')
+        plt.ylim(10**-14,10**-6)
+        plt.show()
 
 
 
