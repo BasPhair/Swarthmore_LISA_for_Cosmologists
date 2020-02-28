@@ -10,3 +10,5 @@ lisa.PlotOmega()
 lisa.PlotH()
 
 lisa.PlotF([10**-4,.1])
+
+lisa.OmegaFPlot([10**-4,.1],100)

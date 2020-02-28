@@ -110,14 +110,30 @@ class LISA():
         for y in ys:
             plt.loglog(x,y,'k-')
         plt.ylim(10**-14,10**-6)
+        plt.title('Plot of Power Law Functions')
+        plt.show()
+
+    def FLogOmega(self,x_range,inc):
+        ys = []
+        xs = np.logspace(-4,-1,inc)
+        for x in xs:
+            ys.append(math.log(max(self.Ftab(x)),10))
+        return interpolate.interp1d(xs,ys)
+
+    def OmegaFPlot(self,x_range,inc):
+        FLogO = self.FLogOmega(x_range,inc)
+        ys = []
+        xs = np.logspace(-4,-1,inc)
+        ys = [FLogO(f) for f in xs]
+        ys = [10**y for y in ys]
+        plt.loglog(xs,ys)
+        yval = self.Amin(0,10**-4,.1)
+        plt.loglog(xs,[yval for x in xs],'r--')
+        plt.title('Plot "graph (like Figure 3)"')
         plt.show()
 
 
 
 
 
-
-
-
-
-    
+        
