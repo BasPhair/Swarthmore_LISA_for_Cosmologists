@@ -53,5 +53,7 @@ x = np.logspace(-5,0,1000)
 x2 = np.logspace(math.log(fi,10),math.log(.05,10),200)
 plt.loglog(x,[math.sqrt(4*i*lisa.SumHApprox(i)) for i in x], x2,[hcf(i) for i in x2],'--r')
 plt.title('Sensitivity of LISA to GW150914')
+plt.xlabel('Frequency (Hz)')
+plt.ylabel('hc[strain]')
 plt.show()
 

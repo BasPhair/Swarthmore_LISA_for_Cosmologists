@@ -47,14 +47,22 @@ class LISA():
         
     def PlotOmega(self):
         x = np.logspace(-5,0,1000)
-        plt.loglog(x,[self.SumOmegaNum(i) for i in x], '--r',x,[self.SumOmegaApprox(i) for i in x])
+        plt.loglog(x,[self.SumOmegaNum(i) for i in x],label=(r'$\Sigma\Omega\mathsf{\;num}$'))
+        plt.loglog(x,[self.SumOmegaApprox(i) for i in x],'--r',label=(r'$\Sigma\Omega\mathsf{\;approx}$'))
         plt.title(r'$\Sigma\Omega\mathsf{\;num\;\;vs\;\;}\Sigma\Omega\mathsf{\;approx}$')
+        plt.xlabel('f(Hz)')
+        plt.ylabel('Strain')
+        plt.legend()
         plt.show()
 
     def PlotH(self):
         x = np.logspace(-5,0,1000)
-        plt.loglog(x,[self.SumHNum(i) for i in x], '--r',x,[self.SumHApprox(i) for i in x])
+        plt.loglog(x,[self.SumHNum(i) for i in x],label=r'$\Sigma\mathsf{h}\mathsf{\;num}$')
+        plt.loglog(x,[self.SumHApprox(i) for i in x],'--r',label=r'$\Sigma\mathsf{h}\mathsf{\;approx}$')
         plt.title(r'$\Sigma\mathsf{h}\mathsf{\;num\;\;vs\;\;}\Sigma\mathsf{h}\mathsf{\;approx}$')
+        plt.xlabel('f(Hz)')
+        plt.ylabel('Strain')
+        plt.legend()
         plt.show()
 
     """
@@ -111,6 +119,8 @@ class LISA():
             plt.loglog(x,y,'k-')
         plt.ylim(10**-14,10**-6)
         plt.title('Plot of Power Law Functions')
+        plt.xlabel('f(Hz)')
+        plt.ylabel('Strain')
         plt.show()
 
     def FLogOmega(self,x_range,inc):
@@ -130,6 +140,8 @@ class LISA():
         yval = self.Amin(0,10**-4,.1)
         plt.loglog(xs,[yval for x in xs],'r--')
         plt.title('Plot "graph (like Figure 3)"')
+        plt.xlabel('f(Hz)')
+        plt.ylabel('Strain')
         plt.show()
 
 
