@@ -6,6 +6,7 @@ import matplotlib.pyplot as plt
 from scipy import interpolate, integrate
 from numpy.polynomial import hermite
 import numpy as np
+import time
 pi = math.pi
 
 class LISA():
@@ -32,6 +33,7 @@ class LISA():
 
         self.Atab = [[nt, self.Amin(nt,10**-4,10**-1)] for nt in np.linspace(-7/2, 9/2, num = 41)]
 
+        
     ##Retrieves the data to be analyzed. If the data file is not in the same directory as this code be sure to use the full path.
     def get_data(self, file):
         with open(file) as LISA_data:
